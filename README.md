@@ -13,34 +13,69 @@ The Kaia plugin provides comprehensive functionality for interacting with Kaia M
 - Manage wallet interactions with Kaia network
 - Block and Transaction Information
 
-## Installation
+## Demo
 
-```bash
-npm install @elizaos-plugins/plugin-kaia
-```
+![Kaia Plugin Demo](https://eco-klaytn-safe-asset.s3.ap-northeast-2.amazonaws.com/elizaagent/KaiaPluginDemo.gif)
 
 ## Configuration
 
-1. Get your API key from [KaiaScan](https://docs.kaiascan.io/create-api-key)
+### Environment Variables and Secrets
 
-2. Set up your environment variables:
+Plugins can access environment variables and secrets in two ways:
 
-```bash
-KAIA_EVM_PRIVATE_KEY=your_private_key # Used for onchain interactions like TRANSFER
-KAIA_FAUCET_AMOUNT=fixed_test_tokens_to_be_sent # Ex: 1 - Sends 1 KAIA test tokens to user faucet request on kairos network
-KAIA_KAIASCAN_API_KEY=your_kaiascan_api_key # Used for all fetch actions
-```
+> Get your Kaiascan API key from [KaiaScan](https://docs.kaiascan.io/create-api-key)
 
-3. Register the plugin in your Eliza configuration:
+1. **Character Configuration**: Through `agent.json.secret` or character settings in eliza:
 
-```typescript
-import { kaiaPlugin } from "@elizaos-plugins/plugin-kaia";
 
-export default {
-    plugins: [kaiaPlugin],
-    // ... other configuration
-};
-```
+   ```json
+   {
+     "name": "MyAgent",
+     "settings": {
+       "secrets": {
+        "KAIA_KAIASCAN_API_KEY": "your-kaiascan-api-key",
+        "KAIA_EVM_PRIVATE_KEY": "your-evm-private-key",
+        "KAIA_FAUCET_AMOUNT": "amount-in-kaia" 
+       }
+     }
+   }
+   ```
+
+2. **Runtime Access**: Plugins can access their configuration through the runtime:
+   ```typescript
+   class MyPlugin implements Plugin {
+     async initialize(runtime: AgentRuntime) {
+       const kaiascanApiKey = runtime.getSetting("KAIA_KAIASCAN_API_KEY");
+       const privateKey = runtime.getSetting("KAIA_EVM_PRIVATE_KEY");
+       const faucetAmount = runtime.getSetting("KAIA_FAUCET_AMOUNT");
+     }
+   }
+   ```
+
+The `getSetting` method follows this precedence:
+1. Character settings secrets
+2. Character settings
+3. Global settings
+
+### Plugin Registration
+1. Add it to your agent's character configuration:
+   ```json
+   {
+     "name": "MyAgent",
+     "plugins": [
+       "@elizaos-plugins/plugin-kaia"
+     ]
+   }
+   ```
+
+2. Include it in your package.json:
+   ```json
+   {
+     "dependencies": {
+       "@elizaos-plugins/plugin-kaia": "github:kaiachain/kaia-eliza-plugin"
+     }
+   }
+   ```
 
 ## Usage
 
@@ -165,8 +200,8 @@ Assistant: "The transactions for account is empty";
 | Variable              | Description           | Required |
 | --------------------- | --------------------- | -------- |
 | KAIA_KAIASCAN_API_KEY | Your KaiaScan API key | Yes      |
-| KAIA_FAUCET_AMOUNT    | Test Tokens amount    | Yes      |
-| KAIA_EVM_PRIVATE_KEY  | Your Private key      | Yes      |
+| KAIA_FAUCET_AMOUNT    | Test Tokens amount to distribute to users (Defaults to 1 KAIA)    | Yes      |
+| KAIA_EVM_PRIVATE_KEY  | Your Private key     | Yes      |
 
 ### Providers
 
@@ -174,10 +209,16 @@ Assistant: "The transactions for account is empty";
 
 ## Development
 
+### install
+
+```bash
+pnpm install
+```
+
 ### Building
 
 ```bash
-npm run build
+pnpm build
 ```
 
 ## Dependencies
