@@ -21,7 +21,7 @@ import { faucetTemplate } from "../../templates/faucet";
 import { faucetExamples } from "../../examples/faucet";
 
 const fromChain: SupportedChain = "kairos";
-const FAUCET_AMOUNT = process.env.KAIA_FAUCET_AMOUNT || "50";
+const DEFAULT_FAUCET_AMOUNT = "1"; // in KAIA
 
 // Exported for tests
 export class FaucetAction {
@@ -42,7 +42,7 @@ export class FaucetAction {
             const hash = await walletClient.sendTransaction({
                 account: walletClient.account,
                 to: params.toAddress,
-                value: parseEther(FAUCET_AMOUNT),
+                value: parseEther(params.amount),
                 data: params.data as Hex,
                 kzg: {
                     blobToKzgCommitment: function (): ByteArray {
@@ -59,7 +59,7 @@ export class FaucetAction {
                 hash,
                 from: walletClient.account.address,
                 to: params.toAddress,
-                value: parseEther(FAUCET_AMOUNT),
+                value: parseEther(params.amount),
                 data: params.data as Hex,
             };
         } catch (error) {
@@ -119,6 +119,7 @@ export const faucetAction: Action = {
 
         console.log("Faucet Transfer action handler called");
         const walletProvider = await initWalletProvider(runtime);
+        const faucetAmount = runtime.getSetting("KAIA_FAUCET_AMOUNT") || DEFAULT_FAUCET_AMOUNT;
         const action = new FaucetAction(walletProvider);
 
         // Compose transfer context
@@ -128,11 +129,13 @@ export const faucetAction: Action = {
             walletProvider
         );
 
+        paramOptions.amount = faucetAmount;
+
         try {
             const transferResp = await action.transfer(paramOptions);
             if (callback) {
                 callback({
-                    text: `Successfully transferred ${FAUCET_AMOUNT} test tokens to ${paramOptions.toAddress}\nTransaction Hash: ${transferResp.hash}`,
+                    text: `Successfully transferred ${paramOptions.amount} test tokens to ${paramOptions.toAddress}\nTransaction Hash: ${transferResp.hash}`,
                     content: {
                         success: true,
                         hash: transferResp.hash,
