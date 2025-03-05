@@ -142,7 +142,7 @@ export const transferAction: Action = {
             return true;
         } catch (error) {
             console.error("Error during token transfer:", error);
-            if (callback) {
+            if(callback && error instanceof Error) {
                 callback({
                     text: `Error transferring tokens: ${error.message}`,
                     content: { error: error.message },

@@ -100,11 +100,12 @@ export const getFTBalanceDetailsAction: Action = {
                 "Error in GET_FT_BALANCE_DETAILS handler:",
                 error
             );
-
-            callback({
-                text: `Error fetching FT Balance: ${error.message}`,
-                content: { error: error.message },
-            });
+            if(error instanceof Error) {
+                callback({
+                    text: `Error fetching FT Balance: ${error.message}`,
+                    content: { error: error.message },
+                });
+            }
 
             return false;
         }

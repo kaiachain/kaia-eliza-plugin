@@ -90,11 +90,12 @@ export const getCurrentBalanceAction: Action = {
             }
         } catch (error) {
             elizaLogger.error("Error in GET_CURRENT_BALANCE handler:", error);
-
-            callback({
-                text: `Error fetching balance: ${error.message}`,
-                content: { error: error.message },
-            });
+            if(error instanceof Error) {
+                callback({
+                    text: `Error fetching balance: ${error.message}`,
+                    content: { error: error.message },
+                });
+            }
 
             return false;
         }

@@ -100,10 +100,12 @@ export const getNFTBalanceAction: Action = {
         } catch (error) {
             elizaLogger.error("Error in GET_NFT_BALANCE handler:", error);
 
-            callback({
-                text: `Error fetching NFT Balance: ${error.message}`,
-                content: { error: error.message },
-            });
+            if(error instanceof Error) {
+                callback({
+                    text: `Error fetching NFT Balance: ${error.message}`,
+                    content: { error: error.message },
+                });
+            }
 
             return false;
         }

@@ -97,10 +97,13 @@ export const getAccountOverviewAction: Action = {
         } catch (error) {
             elizaLogger.error("Error in GET_ACCOUNT_OVERVIEW handler:", error);
 
-            callback({
-                text: `Error fetching account overview: ${error.message}`,
-                content: { error: error.message },
-            });
+            if(error instanceof Error) {
+                callback({
+                    text: `Error fetching account overview: ${error.message}`,
+                    content: { error: error.message },
+                });
+            }
+            
 
             return false;
         }

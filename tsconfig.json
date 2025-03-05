@@ -1,15 +1,23 @@
 {
-    "extends": "../core/tsconfig.json",
-    "compilerOptions": {
-        "outDir": "dist",
-        "rootDir": "./src",
-        "typeRoots": [
-            "./node_modules/@types",
-            "./src/types"
-        ],
-        "declaration": true
-    },
-    "include": [
-        "src"
-    ]
+  "compilerOptions": {
+    "target": "ES2020",
+    "module": "ESNext",
+    "moduleResolution": "node",
+    "esModuleInterop": true,
+    "strict": false,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "allowImportingTsExtensions": true,
+    "noEmit": true,
+    "noImplicitAny": false,
+    "allowSyntheticDefaultImports": true,
+    "outDir": "dist",
+    "rootDir": "src",
+    "declaration": true,
+    "types": ["node", "vitest/globals"],
+    "resolveJsonModule": true,
+    "sourceMap": true
+  },
+  "include": ["src"],
+  "exclude": ["node_modules", "dist"]
 }
