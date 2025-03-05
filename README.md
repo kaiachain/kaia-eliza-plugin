@@ -60,7 +60,7 @@ Receives Kaia Testnet tokens for given address:
 
 ```typescript
 // Example conversation
-User: "give me some test tokens to 0x40453b61a3da4eceaa8b6e810dad433fb57c0e61";
+User: "give me some test tokens to 0xcfcb1dc1efbbccbb6a9afc78c12315d64e8c383d";
 Assistant: "I'll send few KAIA testnet tokens...";
 ```
 
@@ -70,7 +70,7 @@ Transfer KAIA tokens to another address for provided network(kaia/kairos):
 
 ```typescript
 // Example conversation
-User: "Send 1 KAIA to 0x40453b61a3da4eceaa8b6e810dad433fb57c0e61 on kairos";
+User: "Send 1 KAIA to 0xcfcb1dc1efbbccbb6a9afc78c12315d64e8c383d on kairos";
 Assistant: "I'll send 1 KAIA token now...";
 ```
 
@@ -80,7 +80,7 @@ Query account overview for given address for provided network(kaia/kairos):
 
 ```typescript
 // Example conversation
-User: "What's my account overview of 0x40453b61a3da4eceaa8b6e810dad433fb57c0e61 on kairos?";
+User: "What's my account overview of 0xcfcb1dc1efbbccbb6a9afc78c12315d64e8c383d on kairos?";
 Assistant: "Your account overview details are Account Type: EOA, Balance: 10, Total Transaction Count: 12";
 ```
 
@@ -90,7 +90,7 @@ Query current balance and portfolio value for provided network(kaia/kairos):
 
 ```typescript
 // Example conversation
-User: "What's my current balance of 0x40453b61a3da4eceaa8b6e810dad433fb57c0e61 on kairos?";
+User: "What's my current balance of 0xcfcb1dc1efbbccbb6a9afc78c12315d64e8c383d on kairos?";
 Assistant: "Your balance contains 12 KAIA";
 ```
 
@@ -100,7 +100,7 @@ Query fungible token balances for given address on provided network(kaia/kairos)
 
 ```typescript
 // Example conversation
-User: "What's ft balance of 0x40453b61a3da4eceaa8b6e810dad433fb57c0e61 on kaia?";
+User: "What's ft balance of 0xcfcb1dc1efbbccbb6a9afc78c12315d64e8c383d on kaia?";
 Assistant: "Your have total 5 FTs";
 ```
 
@@ -110,7 +110,7 @@ Query non fungible token balances for given address on provided network(kaia/kai
 
 ```typescript
 // Example conversation
-User: "What's nft balance of 0x40453b61a3da4eceaa8b6e810dad433fb57c0e61 on kaia?";
+User: "What's nft balance of 0xcfcb1dc1efbbccbb6a9afc78c12315d64e8c383d on kaia?";
 Assistant: "Your have total 2 NFT Collections";
 ```
 
@@ -140,7 +140,7 @@ Query transactions list by account on provided network(kaia/kairos):
 
 ```typescript
 // Example conversation
-User: "What are the transactions for 0x40453b61a3da4eceaa8b6e810dad433fb57c0e61 on kairos?";
+User: "What are the transactions for 0xcfcb1dc1efbbccbb6a9afc78c12315d64e8c383d on kairos?";
 Assistant: "The transactions for account is empty";
 ```
 
