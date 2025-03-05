@@ -1,6 +1,6 @@
 {
     "name": "@elizaos-plugins/plugin-kaia",
-    "version": "0.1.9",
+    "version": "0.1.0",
     "type": "module",
     "main": "dist/index.js",
     "module": "dist/index.js",
@@ -36,15 +36,21 @@
         "pluginParameters": {
           "KAIA_EVM_PRIVATE_KEY": {
             "type": "string",
-            "description": "EVM private key is required to interact with the Kaia blockchain"
+            "minLength": 1,
+            "description": "EVM private key is required to interact with the Kaia blockchain",
+            "optional": false
           },
           "KAIA_KAIASCAN_API_KEY": {
             "type": "string",
-            "description": "Kaiascan API Key"
+            "minLength": 1,
+            "description": "Kaiascan API Key",
+            "optional": false
           },
           "KAIA_FAUCET_AMOUNT": {
-            "type": "number",
-            "description": "Faucet Amount to be distributed per request in KAIA"
+            "type": "string",
+            "minLength": 1,
+            "description": "(Optional) The Faucet Amount to be distributed per request in KAIA. Defaults to \"0\" if not provided.",
+            "optional": true
           }
         }
     }

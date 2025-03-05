@@ -236,4 +236,4 @@ For more information about Kaia blockchain capabilities:
 
 ## License
 
-This plugin is part of the Eliza project. See the main project repository for license information.
+This plugin is part of the [Eliza project](https://github.com/elizaOS/eliza). See the main project repository for license information.
