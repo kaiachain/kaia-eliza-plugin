@@ -30,5 +30,22 @@
     },
     "peerDependencies": {
         "whatwg-url": "7.1.0"
+    },
+    "agentConfig": {
+        "pluginType": "elizaos:plugin:1.0.0",
+        "pluginParameters": {
+          "KAIA_EVM_PRIVATE_KEY": {
+            "type": "string",
+            "description": "EVM private key is required to interact with the Kaia blockchain"
+          },
+          "KAIA_KAIASCAN_API_KEY": {
+            "type": "string",
+            "description": "Kaiascan API Key"
+          },
+          "KAIA_FAUCET_AMOUNT": {
+            "type": "number",
+            "description": "Faucet Amount to be distributed per request in KAIA"
+          }
+        }
     }
 }
