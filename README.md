@@ -15,7 +15,7 @@ The Kaia plugin provides comprehensive functionality for interacting with Kaia M
 
 ## Demo
 
-https://eco-klaytn-safe-asset.s3.ap-northeast-2.amazonaws.com/elizaagent/KaiaElizaPluginDemo.mov
+<video src="https://eco-klaytn-safe-asset.s3.ap-northeast-2.amazonaws.com/elizaagent/KaiaElizaPluginDemo.mp4"></video>
 
 ## Configuration
 
