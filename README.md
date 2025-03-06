@@ -67,15 +67,14 @@ The `getSetting` method follows this precedence:
      ]
    }
    ```
-
-2. Include it in your package.json:
-   ```json
-   {
-     "dependencies": {
-       "@elizaos-plugins/plugin-kaia": "github:kaiachain/kaia-eliza-plugin"
-     }
-   }
-   ```
+### Run Eliza Project
+```
+cd eliza
+pnpm install
+npx elizaos plugins install @elizaos-plugins/plugin-kaia # Will install plugin package
+pnpm build
+pnpm start --character="./characters/kaiaagent.character.json"
+```
 
 ## Usage
 
