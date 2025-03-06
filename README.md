@@ -58,7 +58,7 @@ The `getSetting` method follows this precedence:
 3. Global settings
 
 ### Plugin Registration
-1. Add it to your agent's character configuration:
+Add it to your agent's character configuration:
    ```json
    {
      "name": "MyAgent",
