@@ -1,36 +1,22 @@
 import type { Plugin } from "@elizaos/core";
-import {
-    getCurrentBalanceAction,
-    getNFTBalanceAction,
-    getFTBalanceDetailsAction,
-    getAccountOverviewAction,
-    faucetAction,
-    getLatestBlockAction,
-    transferAction,
-    getBlockAction,
-    getTransactionsByAccountAction,
-    getKaiaInfoAction,
-} from "./actions";
-import { kaiaWalletProvider } from "./providers/wallet";
+import { getOnChainActions } from "./actions";
+import { getWalletClient, getWalletProvider } from "./wallet";
 
-export * as actions from "./actions";
+async function createKaiaPlugin(
+    config: any
+): Promise<Plugin> {
+    const walletClient = getWalletClient(config);
+    const actions = await getOnChainActions(walletClient, config);
+    console.log(actions);
 
-export const kaiaPlugin: Plugin = {
-    name: "kaia",
-    description: "Kaia blockchain integration plugin",
-    actions: [
-        getLatestBlockAction,
-        getNFTBalanceAction,
-        getFTBalanceDetailsAction,
-        getCurrentBalanceAction,
-        getAccountOverviewAction,
-        faucetAction,
-        transferAction,
-        getBlockAction,
-        getTransactionsByAccountAction,
-        getKaiaInfoAction,
-    ],
-    evaluators: [],
-    providers: [kaiaWalletProvider],
-};
-export default kaiaPlugin;
+    return {
+        name: "kaia",
+        description: "Kaia blockchain integration plugin",
+        providers: [getWalletProvider(walletClient)],
+        evaluators: [],
+        services: [],
+        actions: actions,
+    };
+}
+
+export default createKaiaPlugin;

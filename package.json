@@ -1,64 +1,65 @@
 {
-  "name": "@elizaos-plugins/plugin-kaia",
-  "version": "0.1.0",
-  "type": "module",
-  "main": "dist/index.js",
-  "module": "dist/index.js",
-  "types": "dist/index.d.ts",
-  "exports": {
-    "./package.json": "./package.json",
-    ".": {
-      "import": {
-        "@elizaos/source": "./src/index.ts",
-        "types": "./dist/index.d.ts",
-        "default": "./dist/index.js"
-      }
+    "name": "@elizaos-plugins/plugin-kaia",
+    "version": "0.1.1",
+    "type": "module",
+    "main": "dist/index.js",
+    "module": "dist/index.js",
+    "types": "dist/index.d.ts",
+    "exports": {
+        "./package.json": "./package.json",
+        ".": {
+            "import": {
+                "@elizaos/source": "./src/index.ts",
+                "types": "./dist/index.d.ts",
+                "default": "./dist/index.js"
+            }
+        }
+    },
+    "files": [
+        "dist"
+    ],
+    "dependencies": {
+        "@elizaos/core": "latest",
+        "@goat-sdk/adapter-vercel-ai": "0.2.0",
+        "@goat-sdk/core": "0.4.6",
+        "@goat-sdk/wallet-viem": "0.2.0",
+        "@kaiachain/kaia-agent-kit": "^0.0.15",
+        "tsup": "8.3.5",
+        "viem": "2.22.2"
+    },
+    "scripts": {
+        "build": "tsup --format esm --dts",
+        "dev": "tsup --format esm --dts --watch",
+        "lint": "biome lint .",
+        "lint:fix": "biome check --apply .",
+        "format": "biome format .",
+        "format:fix": "biome format --write ."
+    },
+    "devDependencies": {
+        "@biomejs/biome": "1.9.4",
+        "@types/node": "^20.0.0",
+        "typescript": "5.6.3",
+        "vitest": "3.0.5"
+    },
+    "peerDependencies": {
+        "whatwg-url": "7.1.0"
+    },
+    "agentConfig": {
+        "pluginType": "elizaos:plugin:1.0.0",
+        "pluginParameters": {
+            "KAIA_KAIASCAN_API_KEY": {
+                "type": "string",
+                "description": "Kaiascan API key"
+            },
+            "KAIA_EVM_PRIVATE_KEY": {
+                "type": "string",
+                "description": "EVM private key"
+            },
+            "KAIA_NETWORK": {
+                "type": "string",
+                "description": "EVM network",
+                "default": "kairos"
+            }
+        }
     }
-  },
-  "files": [
-    "dist"
-  ],
-  "dependencies": {
-    "@elizaos/core": "latest",
-    "node-cache": "^5.1.2",
-    "tsup": "8.3.5",
-    "viem": "2.22.2",
-    "zod": "^3.24.2"
-  },
-  "devDependencies": {
-    "@types/node": "^20.0.0",
-    "typescript": "5.6.3",
-    "vitest": "3.0.5"
-  },
-  "scripts": {
-    "build": "tsup --format esm --dts",
-    "dev": "tsup --format esm --dts --watch",
-    "lint": "eslint . --fix"
-  },
-  "peerDependencies": {
-    "whatwg-url": "7.1.0"
-  },
-  "agentConfig": {
-    "pluginType": "elizaos:plugin:1.0.0",
-    "pluginParameters": {
-      "KAIA_EVM_PRIVATE_KEY": {
-        "type": "string",
-        "minLength": 1,
-        "description": "EVM private key is required to interact with the Kaia blockchain",
-        "optional": false
-      },
-      "KAIA_KAIASCAN_API_KEY": {
-        "type": "string",
-        "minLength": 1,
-        "description": "Kaiascan API Key",
-        "optional": false
-      },
-      "KAIA_FAUCET_AMOUNT": {
-        "type": "string",
-        "minLength": 1,
-        "description": "(Optional) The Faucet Amount to be distributed per request in KAIA. Defaults to \"0\" if not provided.",
-        "optional": true
-      }
-    }
-  }
 }
