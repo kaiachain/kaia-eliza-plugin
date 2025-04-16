@@ -59,6 +59,11 @@
                 "type": "string",
                 "description": "EVM network",
                 "default": "kairos"
+            },
+            "KAIROS_FAUCET_AMOUNT": {
+                "type": "string",
+                "description": "Amount of KAIROS Test coins to transfer for user",
+                "default": "1"
             }
         }
     }
